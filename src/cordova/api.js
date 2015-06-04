@@ -1,9 +1,15 @@
 // https://github.com/Wizcorp/phonegap-facebook-plugin#get-status
 CFB.getLoginStatus = function (callback) {
+    console.log('getLoginStatus inside');
+
     var onError = function (message) {
+        console.log('onError: ' + JSON.stringify(message, null, '\t'));
+
         callback(new Error(message.errorMessage), null);
     };
     var onSuccess = function (res) {
+        console.log('onSuccess: ' + JSON.stringify(res, null, '\t'));
+
         callback(null, res);
     };
     facebookConnectPlugin.getLoginStatus(onSuccess, onError);
@@ -11,10 +17,13 @@ CFB.getLoginStatus = function (callback) {
 
 // https://github.com/Wizcorp/phonegap-facebook-plugin#login
 CFB.loginCodova = function (callback) {
+    console.log('loginCodova inside');
     var onError = function (message) {
+        console.log('onError: ' + JSON.stringify(message, null, '\t'));
         callback(new Error(message.errorMessage), null);
     };
     var onSuccess = function (res) {
+        console.log('onSuccess: ' + JSON.stringify(res, null, '\t'));
         callback(null, res);
     };
     facebookConnectPlugin.login(CFB.getPermissions(), onSuccess, onError);
@@ -43,7 +52,7 @@ CFB.share = function (options, callback) {
 };
 
 /**
-Meteor.startup(function () {
+ Meteor.startup(function () {
     Meteor.setTimeout(function () {
 
         CFB.shareFeed({
@@ -76,4 +85,4 @@ Meteor.startup(function () {
         });
     }, 2000);
 });
-*/
+ */

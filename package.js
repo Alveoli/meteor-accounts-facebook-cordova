@@ -18,8 +18,8 @@ Cordova.depends({
 Package.registerBuildPlugin({
     name: 'configuration',
     use: [
-        'check',
-        'ejson'
+        'check@1.0.5',
+        'ejson@1.0.6'
     ],
     sources: [
         'plugin/compile.configuration.plugin.js'

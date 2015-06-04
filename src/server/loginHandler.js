@@ -1,5 +1,7 @@
 // https://github.com/meteor/meteor/blob/devel/packages/facebook/facebook_server.js
 Accounts.registerLoginHandler(function(loginRequest) {
+    console.log('registerLoginHandler: '+JSON.stringify(loginRequest, null, '\t'));
+
     if(!loginRequest.cordova) {
         return undefined;
     }

@@ -1,6 +1,7 @@
 var profileFields = [];
 
 CFB.Configure = function (config) {
+    log.debug('CFB.Configure: '+JSON.stringify(config, null, '\t'));
     if(!config || !config.APP_ID || !config.secret) {
         throw new Error("Meteor settings for accounts-facebook-cordova not configured correctly.");
     }

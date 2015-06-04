@@ -1,5 +1,6 @@
 Accounts.oauth.registerService('facebook');
 Meteor.loginWithFacebook = function(options, callback) {
+    console.log('Meteor.loginWithFacebook');
     // support a callback without options
     if (! callback && typeof options === "function") {
         callback = options;
@@ -9,6 +10,7 @@ Meteor.loginWithFacebook = function(options, callback) {
     var credentialRequestCompleteCallback = Accounts.oauth.credentialRequestCompleteHandler(callback);
 
     var fbLoginSuccess = function (data) {
+        console.log('fbLoginSuccess');
         data.cordova = true;
         Accounts.callLoginMethod({
             methodArguments: [data],
@@ -17,25 +19,34 @@ Meteor.loginWithFacebook = function(options, callback) {
     }
 
     if (Meteor.isCordova) {
+        console.log('isCordova');
         CFB.getLoginStatus(function (error, response) {
+            console.log('getLoginStatus');
             if(error) {
                 callback(error, null);
                 return;
             }
             if (response.status != "connected") {
+                console.log('connected');
                 CFB.loginCodova(function (err, res) {
+                    console.log('loginCodova');
                     if(err) {
+                        console.log('err');
+                        console.log('err: '+err);
                         callback(err, null);
                         return;
                     }
+                    console.log('loginCodova 2');
                     fbLoginSuccess(res);
                 });
             }
             else {
+                console.log('else connected');
                 fbLoginSuccess(response);
             }
         });
     } else {
+        console.log('else isCordova');
         Facebook.requestCredential(options, credentialRequestCompleteCallback);
     }
 };
@@ -48,6 +59,7 @@ var capitalize = function(str){
 };
 var on = false;
 var login = function (cb) {
+    console.log('');
     if(on)
         return;
     on = true;
