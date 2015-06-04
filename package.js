@@ -1,6 +1,6 @@
 Package.describe({
     name: "alveoli:cordova-fb",
-    version: "0.11.0",
+    version: "0.11.1",
     summary: "Login service for Facebook accounts (works with cordova)",
     git: "https://github.com/Alveoli/meteor-accounts-facebook-cordova.git"
 });
